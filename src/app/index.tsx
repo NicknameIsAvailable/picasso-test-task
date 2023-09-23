@@ -1,6 +1,8 @@
 import {Routing} from "../pages";
 import {BrowserRouter} from "react-router-dom";
 import {Suspense} from "react";
+import Header from "../widgets/header/ui";
+import {Container} from "@mui/joy";
 
 const App = () => {
 
@@ -8,7 +10,10 @@ const App = () => {
 
         <BrowserRouter>
             <Suspense fallback="Loading...">
-                <Routing/>
+                <Container>
+                    <Header/>
+                    <Routing/>
+                </Container>
             </Suspense>
         </BrowserRouter>
     )

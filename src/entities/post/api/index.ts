@@ -1,19 +1,16 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query";
-import { Post } from "../../../shared/types.ts";
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import {Post} from "../../../shared/types.ts";
 
 export const postApi = createApi({
-    reducerPath: 'postApi',
-    baseQuery: fetchBaseQuery({
-        baseUrl: 'https://jsonplaceholder.typicode.com/'
-    }),
+    baseQuery: fetchBaseQuery({ baseUrl: 'https://jsonplaceholder.typicode.com/' }), // Укажите свой URL-адрес
     endpoints: (builder) => ({
-        getAllPosts: builder.query<Post[], string>({
-            query: () => 'posts'
+        getPosts: builder.query<Post[], void>({
+            query: (limit) => `posts?&_limit=${limit}`,
         }),
-        getOnePost: builder.query<Post, string>({
-            query: (id) => `posts/${id}`
-        })
-    })
+        getOnePost: builder.query<Post[], void>({
+            query: (id) => `posts/${id}`,
+        }),
+    }),
 });
 
-export const { useGetAllPostsQuery, useGetOnePostQuery } = postApi;
+export const { useGetPostsQuery, useGetOnePostQuery } = postApi;
