@@ -1,7 +1,7 @@
 // import {useGetAllPostsQuery} from "../../entities/post/api";
 
 import PostsList from "../../widgets/posts-list/ui";
-import {Box, Button, Typography} from "@mui/joy";
+import {Box, Typography} from "@mui/joy";
 import {useEffect, useState} from "react";
 import {Post} from "../../shared/types.ts";
 import {useGetPostsQuery} from "../../entities/post/api";

@@ -13,4 +13,4 @@ export const postApi = createApi({
     }),
 });
 
-export const { useGetPostsQuery, useGetOnePostQuery } = postApi;
+export const { useGetPostsQuery, useGetOnePostQuery }: any = postApi;

@@ -1,17 +1,18 @@
 import {Button, Typography} from "@mui/joy";
-import {Link, useParams} from "react-router-dom";
+import {useParams, useNavigate} from "react-router-dom";
 import {useGetOnePostQuery} from "../../entities/post/api";
 import {useEffect, useState} from "react";
 import {Post} from "../../shared/types.ts";
 
 export const PostPage = () => {
     const [post, setPost] = useState<Post>()
-
+    const navigate = useNavigate()
     const params = useParams()
     const { data, error, isLoading } = useGetOnePostQuery(params.id);
 
     useEffect(() => {
         if (!isLoading && !error) {
+            // @ts-ignore
             setPost(data);
         }
     }, [data, error, isLoading]);
@@ -21,8 +22,10 @@ export const PostPage = () => {
     }
 
     if (error) {
-        return <div>Error: {error?.message}</div>;
+        return <div>Error: {JSON.stringify(error)}</div>;
     }
+
+    const goBack = () => navigate(-1)
 
     return (
         <div>
@@ -33,9 +36,7 @@ export const PostPage = () => {
                 <p>
                     {post?.body}
                 </p>
-                <Link to={-1}>
-                    <Button>Назад</Button>
-                </Link>
+                <Button onClick={goBack}>Назад</Button>
             </Typography>
         </div>
     );

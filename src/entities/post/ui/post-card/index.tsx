@@ -3,7 +3,7 @@ import {Post} from "../../../../shared/types.ts";
 import {Button} from "@mui/joy";
 import {Link} from "react-router-dom";
 
-export const PostCard = ({post, loading}: {post: Post, loading: boolean}) => {
+export const PostCard = ({post, loading}: {post: Post, loading: boolean | undefined}) => {
     const truncateText = (text: string, maxLength: number) => {
         if (text.length > maxLength) {
             return  text.substring(0, maxLength) + '...'
